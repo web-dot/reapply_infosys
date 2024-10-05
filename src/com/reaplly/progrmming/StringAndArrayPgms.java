@@ -3,7 +3,9 @@ package com.reaplly.progrmming;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -162,6 +164,7 @@ public class StringAndArrayPgms {
 	 * Array problems
 	 * 
 	 * - Reverse an array of integers.
+	 * - common elements in array.
 	 * - find the second largest element in array
 	 * - Rotate array to right by k steps
 	 * - Remove duplicates from sorted array
@@ -190,6 +193,27 @@ public class StringAndArrayPgms {
 		}
 		return nums;
 	}
+	
+	public static int[] commonElements(int[] a1, int[] a2) {
+		Set<Integer> set = new HashSet<>();
+		for(int i : a1) {
+			for(int j : a2) {
+				if(i == j) {
+					set.add(i);
+				}
+			}
+		}
+		int[] result = new int[set.size()];
+		int k = 0;
+		for(int i : set) {
+			result[k] = i;
+			k++;
+		}
+		return result;
+	}
+	
+	
+	
 	
 	public static int secondLargest(int[] nums) {
 		if(nums.length == 1) {
@@ -221,12 +245,34 @@ public class StringAndArrayPgms {
 	 * 
 	 * */
 	
+	public static int findHcfByLoop(int num1, int num2) {
+		int min = num1 < num2 ? num1 : num2;
+		int hcf = 1;
+		for(int i = 1; i <= min; i++) {
+			if(num1 % i == 0 && num2 % i == 0) {
+				hcf = i;
+			}
+		}
+		return hcf;
+	}
 	
-	
+	public static int findHcf(int num1, int num2) {
+		int min = (num1 < num2) ? num1 : num2;
+		int hcf = -1;
+		while(true) {
+			if(num1 % min == 0 && num2 % min == 0) {
+				hcf = min;
+				break;
+			}
+			--min;
+		}
+		return hcf;
+	}
 		
 	public static void main(String[] args) {
-		int[] nums = {};
-		System.out.println(secondLargest(nums));
+		int[] a = {1,2,4,9};
+		int[] b = {2,5,7,9,1};
+		System.out.println(Arrays.toString(commonElements(a, b)));
 	}
 
 }
