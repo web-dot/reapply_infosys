@@ -1,11 +1,9 @@
 package com.reaplly.progrmming;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -289,8 +287,35 @@ public class StringAndArrayPgms {
 		return lcm;
 	}
 	
+	/**
+	 * String Reversal: Reversing the order of characters in a string.
+	 * Palindrome Check: Determining whether a string reads the same backward as forward.
+	 * Anagram Check: Checking if two strings are anagrams of each other
+	 * Substring Search: Finding a substring within a larger string.
+	 * String Replacement: Replacing occurrences of a substring with another substring.
+	 * 
+	 * */
+	
+	public static String reverseStringAux(String s) {
+		char[] c = s.toCharArray();
+		for(int i=0; i<c.length/2; i++) {
+			char temp = c[i];
+			c[i] = c[c.length-i-1];
+			c[c.length-i-1] = temp;
+		}
+		return new String(c);
+	}
+	
+	public static String reverseStringSB(String s) {
+		StringBuilder sb = new StringBuilder();
+		for(int i = s.length() - 1; i >= 0; i--) {
+			sb.append(s.charAt(i));
+		}
+		return sb.toString();
+	}
+	
 	public static void main(String[] args) {
-		System.out.println(findLcm(15, 7));
+		System.out.println(reverseStringSB("good"));
 	}
 
 }
